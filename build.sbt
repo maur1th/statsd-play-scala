@@ -9,7 +9,7 @@ scalaVersion := "2.11.1"
 libraryDependencies ++= Seq( jdbc , anorm , cache , ws )
 
 libraryDependencies ++= Seq(
-  "org.jmxtrans.embedded" % "embedded-jmxtrans" % "1.0.15+"
+  "com.kenshoo" %% "metrics-play" % "2.3.0_0.1.9"
 )
 
 unmanagedResourceDirectories in Test <+=  baseDirectory ( _ /"target/web/public/test" )  
