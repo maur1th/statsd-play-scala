@@ -2,13 +2,6 @@
 
 A demonstration app using Scala + Play that exports metrics via StatsD
 
-The following settings can be specified as environment variables:
+AspectJ needs to be added with the JVM runtime, e.g.:
 
-* statsd.host - Defaults to IP 127.0.0.1
-* statsd.port - Defaults to port 8125
-* statsd.enabled - Defaults to false
-* jmxtrans.queryIntervalInSeconds - Defaults to 15 seconds
-* jmxtrans.numQueryThreads - Defaults to 1 thread
-* jmxtrans.numExportThreads - Defaults to 1 thread
-* jmxtrans.exportIntervalInSeconds - Defaults to 30 seconds
-* jmxtrans.exportBatchSize - Defaults to 50
+    -javaagent:$HOME/.ivy2/cache/org.aspectj/aspectjweaver/jars/aspectjweaver-1.8.6.jar
