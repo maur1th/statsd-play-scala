@@ -1,6 +1,6 @@
-# jmxtrans-play-scala
+# statsd-play-scala
 
-A demonstration app using Scala + Play that exports metrics via jmxtrans-embedded
+A demonstration app using Scala + Play that exports metrics via StatsD
 
 The following settings can be specified as environment variables:
 
