@@ -17,9 +17,19 @@
       ]
     },
     {
+      "objectName": "java.lang:type=OperatingSystem",
+      "resultAlias": "os",
+      "attributes": ["TotalPhysicalMemorySize", "CommittedVirtualMemorySize", "FreePhysicalMemorySize", "TotalSwapSpaceSize", "FreeSwapSpaceSize", "MaxFileDescriptorCount", "OpenFileDescriptorCount", "ProcessCpuLoad", "SystemCpuLoad"]
+    },
+    {
       "objectName": "java.lang:type=Threading",
       "resultAlias": "jvm.thread",
       "attributes": ["ThreadCount", "TotalStartedThreadCount", "DaemonThreadCount"]
+    },
+    {
+      "objectName": "java.lang:type=ClassLoading",
+      "resultAlias": "jvm.classes",
+      "attributes": ["LoadedClassCount", "UnloadedClassCount"]
     }
   ],
   "outputWriters": [
