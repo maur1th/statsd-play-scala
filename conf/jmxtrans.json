@@ -6,11 +6,13 @@
       "attributes": [
         {
           "name": "HeapMemoryUsage",
-          "keys": ["committed", "init", "max", "used"]
+          "keys": ["committed", "init", "max", "used"],
+          "resultAlias": "heap"
         },
         {
           "name": "NonHeapMemoryUsage",
-          "keys": ["committed", "init", "max", "used"]
+          "keys": ["committed", "init", "max", "used"],
+          "resultAlias": "nonheap"
         }
       ]
     },
@@ -24,8 +26,10 @@
     {
       "@class": "org.jmxtrans.embedded.output.StatsDWriter",
       "settings": {
-        "host": "${statsd.host:172.24.192.28}",
-        "port": "${statsd.port:8125}"
+        "host": "${statsd.host:127.0.0.1}",
+        "port": "${statsd.port:8125}",
+        "namePrefix": "testapp-dev.#escaped_hostname#.",
+        "enabled": "${statsd.enabled:false}"
       }
     }
   ],

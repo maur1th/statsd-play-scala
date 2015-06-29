@@ -9,7 +9,6 @@ object Application extends Controller {
   def index = Action {
     val jmxTrans = new ConfigurationParser().newEmbeddedJmxTrans("classpath:jmxtrans.json")
     jmxTrans.start()
-    Ok(views.html.index(s"Query Count: ${jmxTrans.getQueries().get(0).toString()}"))
+    Ok(views.html.index(s"${jmxTrans.getOutputWriters().iterator().next().getSettings().get("host")}"))
   }
-
 }
