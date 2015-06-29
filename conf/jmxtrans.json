@@ -1,0 +1,37 @@
+{
+  "queries": [
+    {
+      "objectName": "java.lang:type=Memory",
+      "resultAlias": "jvm.memory",
+      "attributes": [
+        {
+          "name": "HeapMemoryUsage",
+          "keys": ["committed", "init", "max", "used"]
+        },
+        {
+          "name": "NonHeapMemoryUsage",
+          "keys": ["committed", "init", "max", "used"]
+        }
+      ]
+    },
+    {
+      "objectName": "java.lang:type=Threading",
+      "resultAlias": "jvm.thread",
+      "attributes": ["ThreadCount", "TotalStartedThreadCount", "DaemonThreadCount"]
+    }
+  ],
+  "outputWriters": [
+    {
+      "@class": "org.jmxtrans.embedded.output.StatsDWriter",
+      "settings": {
+        "host": "${statsd.host:172.24.192.28}",
+        "port": "${statsd.port:8125}"
+      }
+    }
+  ],
+  "queryIntervalInSeconds": "${jmxtrans.queryIntervalInSeconds:15}",
+  "numQueryThreads": "${jmxtrans.numQueryThreads:1}",
+  "numExportThreads": "${jmxtrans.numExportThreads:1}",
+  "exportIntervalInSeconds": "${jmxtrans.exportIntervalInSeconds:30}",
+  "exportBatchSize": "${jmxtrans.exportBatchSize:50}"
+}
