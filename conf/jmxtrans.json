@@ -17,6 +17,57 @@
       ]
     },
     {
+      "objectName": "java.lang:type=MemoryPool,name=Code Cache",
+      "resultAlias": "jvm.memory.codeCache",
+      "attributes": [
+        {
+          "name": "Usage",
+          "keys": ["committed", "init", "max", "used"],
+          "resultAlias": "heap"
+        }
+      ]
+    },
+    {
+      "objectName": "java.lang:type=MemoryPool,name=PS Eden Space",
+      "resultAlias": "jvm.memory.pool.eden",
+      "attributes": [
+        {
+          "name": "Usage",
+          "keys": ["committed", "init", "max", "used"]
+        }
+      ]
+    },
+    {
+      "objectName": "java.lang:type=MemoryPool,name=PS Survivor Space",
+      "resultAlias": "jvm.memory.pool.survivor",
+      "attributes": [
+        {
+          "name": "Usage",
+          "keys": ["committed", "init", "max", "used"]
+        }
+      ]
+    },
+    {
+      "objectName": "java.lang:type=MemoryPool,name=PS Old Gen",
+      "resultAlias": "jvm.memory.pool.oldgen",
+      "attributes": [
+        {
+          "name": "Usage",
+          "keys": ["committed", "init", "max", "used"]
+        }
+      ]
+    },
+    {
+      "objectName": "java.lang:type=MemoryPool,name=PS Perm Gen",
+      "resultAlias": "jvm.memory.pool.permgen",
+      "attributes": [
+        {
+          "name": "Usage",
+          "keys": ["committed", "init", "max", "used"]
+        }
+      ]
+    },
+    {
       "objectName": "java.lang:type=OperatingSystem",
       "resultAlias": "os",
       "attributes": ["TotalPhysicalMemorySize", "CommittedVirtualMemorySize", "FreePhysicalMemorySize", "TotalSwapSpaceSize", "FreeSwapSpaceSize", "MaxFileDescriptorCount", "OpenFileDescriptorCount", "ProcessCpuLoad", "SystemCpuLoad"]
@@ -30,6 +81,11 @@
       "objectName": "java.lang:type=ClassLoading",
       "resultAlias": "jvm.classes",
       "attributes": ["LoadedClassCount", "UnloadedClassCount"]
+    },
+    {
+      "objectName": "metrics:name=com.kenshoo.play.metrics.MetricsFilter.activeRequests",
+      "resultAlias": "play.activeRequests",
+      "attributes": "Count"
     }
   ],
   "outputWriters": [
