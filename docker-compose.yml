@@ -1,0 +1,17 @@
+---
+version: "3.4"
+services:
+  play:
+    build: ./demo-app
+    tty: yes  # Play expects a tty else stops
+    ports:
+      - 9000:9000
+  graphite:
+    image: graphiteapp/graphite-statsd
+    ports:
+      - 9001:80
+      - 2003-2004:2003-2004
+      - 2023-2024:2023-2024
+      - 8125:8125/udp
+      - 8126:8126
+...
