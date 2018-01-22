@@ -92,10 +92,10 @@
     {
       "@class": "org.jmxtrans.embedded.output.StatsDWriter",
       "settings": {
-        "host": "${statsd.host:127.0.0.1}",
-        "port": "${statsd.port:8125}",
-        "namePrefix": "testapp-dev.#escaped_hostname#.",
-        "enabled": "${statsd.enabled:false}"
+        "host": "graphite",
+        "port": "8125",
+        "namePrefix": "demo-app.#escaped_hostname#.",
+        "enabled": "true"
       }
     }
   ],
