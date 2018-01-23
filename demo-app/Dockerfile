@@ -3,11 +3,17 @@ FROM openjdk:8-jdk
 # Install sbt
 RUN set -ex && \
         apt-get update && \
-        apt-get install apt-transport-https -y && \
+        apt-get install apt-transport-https wget -y && \
         echo "deb https://dl.bintray.com/sbt/debian /" | tee -a /etc/apt/sources.list.d/sbt.list && \
         apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823 && \
         apt-get update && \
         apt-get install sbt -y
+
+RUN mkdir /usr/lib/java/ \
+&&  wget -P /usr/lib/java/ "https://search.maven.org/remotecontent?filepath=org/jmxtrans/agent/jmxtrans-agent/1.2.7/jmxtrans-agent-1.2.7.jar" \
+&&  ln -s /usr/lib/java/{jmxtrans-agent-1.2.7.jar,jmxtrans-agent.jar}
+
+COPY conf/jmxtrans-agent.xml /
 
 # Cache dependencies
 COPY ["build.sbt", "/tmp/build/"]
@@ -26,4 +32,4 @@ RUN set -ex && \
         sbt test:compile
 
 EXPOSE 9000
-CMD sbt run
+CMD JAVA_OPTS="$JAVA_OPTS -javaagent:/usr/lib/java/jmxtrans-agent.jar=/jmxtrans-agent.xml" sbt run

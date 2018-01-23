@@ -6,6 +6,9 @@ services:
     tty: yes  # Play expects a tty else stops
     ports:
       - 9000:9000
+    environment:
+      STATSD_HOST: graphite
+      STATSD_PORT: 8125
   graphite:
     image: graphiteapp/graphite-statsd
     ports:
