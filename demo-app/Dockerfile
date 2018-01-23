@@ -9,12 +9,6 @@ RUN set -ex && \
         apt-get update && \
         apt-get install sbt -y
 
-RUN mkdir /usr/lib/java/ \
-&&  wget -P /usr/lib/java/ "https://search.maven.org/remotecontent?filepath=org/jmxtrans/agent/jmxtrans-agent/1.2.7/jmxtrans-agent-1.2.7.jar" \
-&&  ln -s /usr/lib/java/{jmxtrans-agent-1.2.7.jar,jmxtrans-agent.jar}
-
-COPY conf/jmxtrans-agent.xml /
-
 # Cache dependencies
 COPY ["build.sbt", "/tmp/build/"]
 COPY ["project/plugins.sbt", "project/build.properties", "/tmp/build/project/"]
@@ -30,6 +24,12 @@ WORKDIR /app
 RUN set -ex && \
         sbt compile && \
         sbt test:compile
+
+RUN mkdir /usr/lib/java/ \
+&&  curl -so /usr/lib/java/jmxtrans-agent-1.2.7.jar "https://search.maven.org/remotecontent?filepath=org/jmxtrans/agent/jmxtrans-agent/1.2.7/jmxtrans-agent-1.2.7.jar" \
+&&  ln -s /usr/lib/java/jmxtrans-agent-1.2.7.jar /usr/lib/java/jmxtrans-agent.jar
+
+COPY conf/jmxtrans-agent.xml /
 
 EXPOSE 9000
 CMD JAVA_OPTS="$JAVA_OPTS -javaagent:/usr/lib/java/jmxtrans-agent.jar=/jmxtrans-agent.xml" sbt run
